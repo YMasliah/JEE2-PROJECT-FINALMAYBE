@@ -56,7 +56,7 @@ public class testAsSomething {
     
     @Test
     public void testFindCourses3() {
-		System.out.println(personManager.searchPerson("toto")); 
+		System.out.println(personManager.searchPerson("t8to")); 
     }
     
 }

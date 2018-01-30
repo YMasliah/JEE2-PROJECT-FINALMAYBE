@@ -38,6 +38,6 @@ public class LoginManager{
 	 */
 	@RolesAllowed("User")
 	public Person logout(Person person) {
-		return em.find(Person.class, "raz");
+		return (Person) null;
 	}
 }
