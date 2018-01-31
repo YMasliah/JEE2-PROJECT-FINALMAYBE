@@ -6,7 +6,6 @@ package database.services.proxy;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
-import javax.annotation.security.RunAs;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -23,8 +22,7 @@ import database.services.imp.PersonManager;
  *
  */
 @Stateless
-@RunAs("User")
-public class AsUser {
+public class AsAnonymous{
 
 	@EJB
 	private PersonManager personManager;
@@ -229,5 +227,4 @@ public class AsUser {
 	public void newPerson(String eMail, String name, String surname, String password) {
 		personManager.newPerson(eMail, name, surname, password);
 	}
-
 }

@@ -42,7 +42,7 @@ public class Activity implements Serializable {
 	private String webSite;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_CV", insertable = false, updatable = false)
+	@JoinColumn(name = "ID_CV")
 	private CV cv;
 
 	public Integer getId() {

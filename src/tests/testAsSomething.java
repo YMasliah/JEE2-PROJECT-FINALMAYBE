@@ -11,12 +11,12 @@ import org.junit.Test;
 
 import database.beans.Person;
 import database.services.imp.LoginManager;
-import database.services.imp.PersonManager;
+import database.services.proxy.AsAnonymous;
 
 public class testAsSomething {
 
     @EJB
-    PersonManager personManager;
+    AsAnonymous AsAnonymous;
     
     @EJB
     LoginManager toto;
@@ -35,28 +35,23 @@ public class testAsSomething {
     
     @Test
     public void testFindCourses() throws NamingException {
-    	personManager.newPerson("2tota", "tata", "titi", "vasavoir");
+    	AsAnonymous.newPerson("2tota", "tata", "titi", "vasavoir");
         if(toto.login("t8to", "vasavoir")!= null)
-        	personManager.newPerson("3tota", "tata", "titi", "vasavoir");
+        	AsAnonymous.newPerson("3tota", "tata", "titi", "vasavoir");
     }
 	
     @Test
     public void testFindCourses2() {
-		Person person = new Person();
-		person.seteMail("t12to");
-		person.setName("tata");
-		person.setSurname("titi");
-		person.setPassword("vasavoir");
-		personManager.newPerson(person);
+    	AsAnonymous.newPerson("34tota", "tata", "titi", "vasavoir");
 		if(toto==null)
 			System.out.println("tarace");
         if(toto.login("t8to", "vasavoir")!= null)
-        	personManager.newPerson("3tota", "tata", "titi", "vasavoir");
+        	AsAnonymous.newPerson("3tota", "tata", "titi", "vasavoir");
     }
     
     @Test
     public void testFindCourses3() {
-		System.out.println(personManager.searchPerson("t8to")); 
+//		System.out.println(AsAnonymous.searchPerson("t8to")); 
     }
     
 }

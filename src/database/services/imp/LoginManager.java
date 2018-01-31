@@ -16,7 +16,7 @@ import database.beans.Person;
  *
  */
 @Stateful
-public class LoginManager{
+public class LoginManager {
 
 	@PersistenceContext(unitName = "myMySQLBase")
     EntityManager em;
