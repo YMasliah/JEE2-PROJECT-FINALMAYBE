@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition>
+	<div>Menu :</div>
+	<ul>
+		<h:form>
+			<li><h:commandLink action="hello">Hello</h:commandLink></li>
+			<li><h:commandLink action="bye">Bye</h:commandLink></li>
+			<li><h:commandLink action="counters">counter</h:commandLink></li>
+			<li><p>
+					<h:commandLink action="#{navigation.hello}"
+						value="Controller to Hello" />
+				</p></li>
+			<li><p>
+					<h:commandButton action="#{navigation.hello}"
+						value="Controller to Hello" />
+				</p></li>
+			<li><p>
+					<h:commandButton action="#{counter.inc}" value="#{counter.value}" />
+				</p></li>
+		</h:form>
+	</ul>
+</ui:composition>
+
+</html>

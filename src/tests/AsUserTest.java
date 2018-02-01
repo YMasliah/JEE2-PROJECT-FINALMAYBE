@@ -1,7 +1,7 @@
 /**
  * 
  */
-package database.services.proxy;
+package tests;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
@@ -24,6 +24,7 @@ import database.beans.Person;
 import database.services.imp.CVManager;
 import database.services.imp.PersonManager;
 import database.services.imp.PersonManager.Param;
+import database.services.proxy.AsUser;
 
 /**
  * @author masliah yann
@@ -141,14 +142,6 @@ public class AsUserTest {
 	public void testLogin() {
 		Person person = manager.login("unique", "vasavoir");
 		Assert.assertNotNull(person);
-	}
-
-	/**
-	 * Test method for {@link database.services.proxy.AsAnonymous#logout(database.beans.Person)}.
-	 */
-	@Test
-	public void testLogout() {
-		manager.logout(null);
 	}
 
 	/**

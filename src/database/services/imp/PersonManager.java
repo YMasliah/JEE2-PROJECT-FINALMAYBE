@@ -164,4 +164,16 @@ public class PersonManager{
 		em.flush();
 	}
 	
+	/* (non-Javadoc)
+	 * @see database.services.ILoginManager#login(java.lang.String, java.lang.String)
+	 */
+	@PermitAll
+	public Person login(String eMail, String password) {
+		Person person = em.find(Person.class, eMail);
+		if(person.getPassword().equals(password)) {
+			return person;
+		}
+		return null;
+	}
+	
 }

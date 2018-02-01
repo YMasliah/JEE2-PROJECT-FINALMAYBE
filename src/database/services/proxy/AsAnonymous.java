@@ -14,7 +14,6 @@ import database.beans.CV;
 import database.beans.Person;
 import database.services.imp.CVManager;
 import database.services.imp.CVManager.Param;
-import database.services.imp.LoginManager;
 import database.services.imp.PersonManager;
 
 /**
@@ -26,8 +25,6 @@ public class AsAnonymous{
 
 	@EJB
 	private PersonManager personManager;
-	@EJB
-	private LoginManager loginManager;
 	@EJB
 	private CVManager cvManager;
 
@@ -137,17 +134,7 @@ public class AsAnonymous{
 	 */
 	@PermitAll
 	public Person login(String eMail, String password) {
-		return loginManager.login(eMail, password);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see database.services.ILoginManager#logout()
-	 */
-	@PermitAll
-	public Person logout(Person person) {
-		return loginManager.logout(person);
+		return personManager.login(eMail, password);
 	}
 
 	/*
