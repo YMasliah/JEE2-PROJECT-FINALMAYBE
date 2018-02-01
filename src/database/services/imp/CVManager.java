@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -19,7 +19,7 @@ import database.beans.Person;
  * @author masliah yann
  *
  */
-@Stateful
+@Stateless
 public class CVManager{
 
 	public enum Param {
@@ -76,9 +76,11 @@ public class CVManager{
 	 */
 	@RolesAllowed({ "User" })
 	public void addActivity(Person person, Activity activity) {
-		em.persist(activity);
-		person.getCv().addActivity(activity);
+		CV cv = em.find(CV.class, person.getCv().getId());
+		cv.addActivity(activity);
+		activity.setCv(cv);
 		em.merge(person);
+		em.flush();
 	}
 
 	/*
@@ -89,8 +91,7 @@ public class CVManager{
 	 */
 	@RolesAllowed({ "User" })
 	public boolean updateActivity(Person person, Integer idAct, Param param, Object value) {
-		int temp = person.getCv().getActivities().indexOf(idAct);
-		Activity activity = person.getCv().getActivities().get(temp);
+		Activity activity = em.find(Activity.class, idAct);
 		switch (param) {
 		case description:
 			activity.setDescription((String) value);

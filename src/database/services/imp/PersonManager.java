@@ -8,17 +8,18 @@ import java.util.List;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import database.beans.CV;
 import database.beans.Person;
 
 /**
  * @author masliah yann
  *
  */
-@Stateful
+@Stateless
 public class PersonManager{
 	
 	public enum Param {
@@ -109,7 +110,10 @@ public class PersonManager{
 	@RolesAllowed({ "User" })
 	public void deletePerson(Person person) {
 		person = em.merge(person);
-	    em.remove(person);
+	    CV cv = em.merge(person.getCv());
+	    em.remove(cv);
+		em.remove(person);
+	    em.flush();
 	}
 
 	/* (non-Javadoc)

@@ -8,6 +8,7 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -40,7 +41,7 @@ public class Person implements Serializable{
 	private Date birthDate;
 	@Column(name = "password", nullable = false)
 	private String password;
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_CV")
 	private CV cv = new CV();
 	

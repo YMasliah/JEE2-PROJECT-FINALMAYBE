@@ -156,7 +156,7 @@ public class AsUserTest {
 	 */
 	@Test
 	public void testGetCVPerson() {
-		manager.getCV((Person)null);
+		Assert.assertNotNull(manager.getCV(manager.getPersonByParam(PersonManager.Param.eMail, "toto").get(0)));
 	}
 
 	/**
@@ -164,7 +164,8 @@ public class AsUserTest {
 	 */
 	@Test
 	public void testAddActivityPersonIntegerStringStringStringString() {
-		manager.addActivity(null, null, null, null, null, null);
+		Person person = manager.getPersonByParam(PersonManager.Param.eMail, "unique").get(0);
+		manager.addActivity(person, 2522, "pasunique", "pasunique", "pasunique", "pasunique");
 	}
 
 	/**
@@ -172,7 +173,16 @@ public class AsUserTest {
 	 */
 	@Test
 	public void testAddActivityPersonActivity() {
-		manager.addActivity(null, null);
+		Person person = manager.getPersonByParam(PersonManager.Param.eMail, "unique").get(0);
+		int actual = manager.getCV(person).getActivities().size();
+		Activity activity = new Activity();
+		activity.setDescription("pasunique");
+		activity.setKind("pasunique");
+		activity.setTitle("pasunique");
+		activity.setWebSite("pasunique");
+		activity.setYear(16);
+		manager.addActivity(person, activity);
+		Assert.assertEquals(manager.getCV(person).getActivities().size(), actual+1);
 	}
 
 	/**
@@ -180,7 +190,8 @@ public class AsUserTest {
 	 */
 	@Test
 	public void testUpdateActivity() {
-		manager.updateActivity(null, null, null, null);
+		Person person = manager.getPersonByParam(PersonManager.Param.eMail, "unique").get(0);
+		manager.updateActivity(person, person.getCv().getActivities().get(0).getId(), CVManager.Param.description, "sa marche ! ou pas");
 	}
 
 	/**
@@ -188,7 +199,8 @@ public class AsUserTest {
 	 */
 	@Test
 	public void testDeleteActivity() {
-		manager.deleteActivity(null, null);
+		Person person = manager.getPersonByParam(PersonManager.Param.eMail, "unique").get(0);
+		manager.deleteActivity(person, person.getCv().getActivities().get(0).getId());
 	}
 
 	/**

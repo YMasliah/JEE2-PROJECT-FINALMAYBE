@@ -41,7 +41,7 @@ public class Activity implements Serializable {
 	@Column(name = "webSite")
 	private String webSite;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_CV")
 	private CV cv;
 

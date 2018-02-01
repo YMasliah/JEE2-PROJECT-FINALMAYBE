@@ -21,6 +21,8 @@ public class LoginManager {
 	@PersistenceContext(unitName = "myMySQLBase")
     EntityManager em;
 	
+	Person person;
+	
 	/* (non-Javadoc)
 	 * @see database.services.ILoginManager#login(java.lang.String, java.lang.String)
 	 */
@@ -28,6 +30,7 @@ public class LoginManager {
 	public Person login(String eMail, String password) {
 		Person person = em.find(Person.class, eMail);
 		if(person.getPassword().equals(password)) {
+			this.person = person;
 			return person;
 		}
 		return null;
@@ -38,6 +41,7 @@ public class LoginManager {
 	 */
 	@RolesAllowed("User")
 	public Person logout(Person person) {
+		this.person = (Person) null;
 		return (Person) null;
 	}
 }
