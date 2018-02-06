@@ -1,81 +1,112 @@
 h1 {
-    border-bottom: solid 1px blue;
+	border-bottom: solid 1px blue;
 }
 
 table {
-    border-collapse: collapse;
-    border: 1px solid black;
+	border-collapse: collapse;
+	border: 1px solid black;
 }
 
 td, th {
-    border: 1px solid black;
-    padding: 3px;
+	border: 1px solid black;
+	padding: 3px;
 }
 
 #page {
-    width: 800px;
-    margin: 0 auto;
+	width: 800px;
+	margin: 0 auto;
 }
 
 #header {
-    border: solid 1px blue;
-    padding: 5px;
-    size: large;
-    color: blue;
-    background-color: #c8bfbf;
-    margin-bottom: 20px;
+	border: solid 1px blue;
+	padding: 5px;
+	size: large;
+	color: blue;
+	background-color: #c8bfbf;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+#login, #search {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#search {
+	padding: 1% 0 0 1%;
+}
+
+#login {
+	position: relative;
+	top: -150px;
+	display: inline-block;
+	float: right;
+	margin: 0 1% 1% 0;
+}
+
+#logout {
+	position: relative;
+	top: -150px;
+	display: inline-block;
+	float: right;
+	margin: 0 1% 1% 0;
 }
 
 #menu {
-    float: right;
-    width: 150px;
-    border: solid 1px gray;
-    padding: 5px;
-    color: blue;
-    background-color: white;
-    margin-left: 20px;
+	clear:right;
+	float: right;
+	width: 150px;
+	border: solid 1px gray;
+	padding: 5px;
+	color: blue;
+	background-color: white;
+	margin-left: 20px;
+	position: relative;
+	top: -100px;
+	right: 10px;
 }
 
 #content {
-    
+	
 }
 
 #footer {
-    border: solid 1px blue;
-    padding: 5px;
-    size: small;
-    color: blue;
-    background-color: #c8bfbf;
-    margin-top: 20px;
+	border: solid 1px blue;
+	padding: 5px;
+	size: small;
+	color: blue;
+	background-color: #c8bfbf;
+	margin-top: 20px;
 }
 
 .alert {
-    color: red;
-    border: solid 2px red;
+	color: red;
+	border: solid 2px red;
 }
 
 .course-table {
-    border-collapse: collapse;
-    border-left: 0px;
-    border-right: 0px;
+	border-collapse: collapse;
+	border-left: 0px;
+	border-right: 0px;
 }
 
 .course-table-header {
-    text-align: center;
-    background: none repeat scroll 0 0 #E5E5E5;
-    border-top: 1px solid #BBBBBB;
-    border-bottom: 1px solid #BBBBBB;
-    padding: 5px;
+	text-align: center;
+	background: none repeat scroll 0 0 #E5E5E5;
+	border-top: 1px solid #BBBBBB;
+	border-bottom: 1px solid #BBBBBB;
+	padding: 5px;
 }
 
 .course-table-odd-row {
-    text-align: center;
-    background: none repeat scroll 0 0 #FFFFFFF;
-    border-top: 1px solid #BBBBBB;
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+	border-top: 1px solid #BBBBBB;
 }
 
 .course-table-even-row {
-    text-align: center;
-    background: none repeat scroll 0 0 #F9F9F9;
-    border-top: 1px solid #BBBBBB;
+	text-align: center;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-top: 1px solid #BBBBBB;
 }

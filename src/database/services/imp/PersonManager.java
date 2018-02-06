@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,6 +21,7 @@ import database.beans.Person;
  *
  */
 @Stateless
+@Startup
 public class PersonManager{
 	
 	public enum Param {

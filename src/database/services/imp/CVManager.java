@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,9 +21,11 @@ import database.beans.Person;
  *
  */
 @Stateless
+@Startup
 public class CVManager{
 
 	public enum Param {
+		id_cv,
 		year,
 		kind,
 		title,
@@ -148,6 +151,8 @@ public class CVManager{
 	@PermitAll
 	public List<Activity> getActivitybyParam(Param param, Object value){
 		switch (param){
+		case id_cv:
+			return ((CV)em.find(CV.class, value)).getActivities();
 		case description:
 			return em.createQuery("select a from Activities a where a.description = :value", Activity.class)
 					.setParameter("value", value).getResultList();

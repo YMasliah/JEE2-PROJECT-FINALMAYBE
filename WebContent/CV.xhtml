@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition template="/template/mylayout.xhtml">
+		<f:metadata>
+			<f:viewParam name="id" value="#{CVController.idSelected}" />
+		</f:metadata>
+
+		<ui:define name="title">Informations perssonelles</ui:define>
+		<ui:define name="content">
+			<h1>
+				<h:outputText value="Informations sur le CV" />
+			</h1>
+
+
+
+			<h2>Liste des activitées dans le CV</h2>
+			<h:form id="myForm">
+				<h:panelGroup rendered="#{CVController.activities.size() > 0}">
+					<p:dataTable var="activity" value="#{CVController.activities}"
+						tableStyle="width:auto">
+						<p:column headerText="Id">
+							<h:outputText value="#{activity.id}" />
+						</p:column>
+
+						<p:column headerText="Year">
+							<h:outputText value="#{activity.year}" />
+						</p:column>
+
+						<p:column headerText="Kind">
+							<h:outputText value="#{activity.kind}" />
+						</p:column>
+
+						<p:column headerText="Title">
+							<h:outputText value="#{activity.title}" />
+						</p:column>
+						<p:column headerText="Description">
+							<h:outputText value="#{activity.description}" />
+						</p:column>
+						<p:column headerText="WebSite">
+							<h:outputText value="#{activity.webSite}" />
+						</p:column>
+					</p:dataTable>
+				</h:panelGroup>
+				<br/>
+				<p:panelGrid id="activity_new" columns="2" cellpadding="5">
+					<f:facet name="header">
+						<h:outputText value="Ajouter/modifier une activitee" />
+					</f:facet>
+					<p:outputLabel for="activity_year" value="Year :" />
+					<p:inputNumber id="activity_year"
+						value="#{CVController.activity.year}" maxValue="2020"
+						thousandSeparator="" decimalPlaces="0">
+						<f:validateLength minimum="4" maximum="4" />
+					</p:inputNumber>
+
+					<p:outputLabel for="activity_kind" value="Kind :" />
+					<p:inputText id="activity_kind"
+						value="#{CVController.activity.kind}">
+					</p:inputText>
+
+					<p:outputLabel for="activity_title" value="Title :" />
+					<p:inputText id="activity_title"
+						value="#{CVController.activity.title}">
+					</p:inputText>
+
+					<p:outputLabel for="activity_description" value="Description :" />
+					<p:inputText id="activity_description"
+						value="#{CVController.activity.description}">
+					</p:inputText>
+
+					<p:outputLabel for="activity_webSite" value="webSite :" />
+					<p:inputText id="activity_webSite"
+						value="#{CVController.activity.webSite}">
+					</p:inputText>
+
+					<f:facet name="footer">
+						<h:commandButton value="Add"
+							action="#{CVController.addActivity()}">
+							<f:ajax execute="@this activity_new" render="@form" />
+						</h:commandButton>
+					</f:facet>
+				</p:panelGrid>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>

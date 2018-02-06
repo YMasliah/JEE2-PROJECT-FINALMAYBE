@@ -7,7 +7,7 @@
 		JdbcUrl jdbc:mysql://dbs-perso.luminy.univmed.fr/m21002022
 		UserName m21002022
 		Password ispbm.
-		JtaManaged false
+		JtaManaged true
 	</Resource>
 
 </resources>

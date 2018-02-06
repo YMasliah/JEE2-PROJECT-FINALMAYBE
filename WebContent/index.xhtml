@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition template="/template/mylayout.xhtml">
+		<ui:define name="content">
+
+			<h1>
+				<h:outputText value="page d'acceuil" />
+			</h1>
+			<h:form id="form">
+				<p:dataList value="#{CVController.cvs}" var="cv" type="unordered"
+					itemType="none" paginator="true" rows="10" styleClass="paginated">
+					<f:facet name="header"> CV List </f:facet>
+					<p:link outcome="CV" value="#{cv.id}">
+						<f:param name="id" value="#{cv.id}" />
+					</p:link>
+				</p:dataList>
+			</h:form>
+
+			<h:form id="refresh">
+				<p:commandButton value="refresh List" update="growl"
+					actionListener="#{CVController.refreshCVs()}" ajax="false" />
+			</h:form>
+
+		</ui:define>
+		<ui:define name="title">acceuil</ui:define>
+	</ui:composition>
+</h:body>
+</html>

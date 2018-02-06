@@ -6,6 +6,7 @@ package database.beans;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,6 +21,7 @@ import javax.persistence.Table;
  * rajout d'une id pour la recherche, sachant que la cl� primaire est l'adresse mail.
  * elle ne peut pas etre vu par tout les utilisateur donc elle ne peut pas etre utiliser pour la recherche.
  */
+//@Named("person")
 @Entity(name = "Persons")
 @Table(name = "persons")
 public class Person implements Serializable{

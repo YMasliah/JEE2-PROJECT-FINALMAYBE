@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.security.PermitAll;
 import javax.ejb.EJB;
+import javax.ejb.Startup;
 import javax.ejb.Stateless;
 
 import database.beans.Activity;
@@ -21,6 +22,7 @@ import database.services.imp.PersonManager;
  *
  */
 @Stateless
+@Startup
 public class AsAnonymous{
 
 	@EJB

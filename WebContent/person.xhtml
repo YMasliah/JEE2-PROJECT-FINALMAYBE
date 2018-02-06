@@ -4,15 +4,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:body>
 	<ui:composition template="/template/mylayout.xhtml">
 		<ui:define name="content">
-			<p>
-				<h:commandButton action="#{person.login}" value="#{person.person}" />
-			</p>
+			<h1>
+				<h:outputText value="Informations perssonelles" />
+			</h1>
+			<p:outputLabel for="birthDate" value="Date de naissance :" />
+			<p:calendar id="birthDate" value="14-02-2018"
+				pattern="dd-MM-yyyy" mask="true" />
 		</ui:define>
+		<ui:define name="title">Informations perssonelles</ui:define>
 	</ui:composition>
 </h:body>
 </html>

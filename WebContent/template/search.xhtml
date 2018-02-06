@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+	<h:form id="search">
+		<p:panelGrid id="panel" columns="2" border="1" cellpadding="10"
+			cellspacing="1">
+
+			<f:facet name="header">
+				<h:outputText value="Recherche" />
+			</f:facet>
+			<p:outputLabel value="Type" />
+			<p:inputText />
+			<p:outputLabel value="Valeur" />
+			<p:inputText />
+
+			<f:facet name="footer">
+				<p:row>
+					<p:column>
+						<p:commandButton id="submit" value="Rechercher" />
+					</p:column>
+				</p:row>
+			</f:facet>
+		</p:panelGrid>
+	</h:form>
+</ui:composition>
+
+</html>
