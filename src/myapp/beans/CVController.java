@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 
 import database.beans.Activity;
 import database.beans.CV;
+import database.beans.Person;
 import database.services.imp.CVManager.Param;
 import database.services.proxy.AsAnonymous;
 import database.services.proxy.AsUser;
@@ -39,7 +40,7 @@ public class CVController implements Serializable{
 	
 	private Integer idSelected; 
 	
-	private Activity activity;
+	private Activity activity = new Activity();
 	
 	@PostConstruct
     public void init() {
@@ -86,4 +87,26 @@ public class CVController implements Serializable{
 		this.activity = activity;
 	}
 
+	public void addActivity(Person person) {
+		activity.setId(null);
+		System.out.println("nouveau");
+		System.out.println(activity.toString());
+		System.out.println(person.toString());
+		asUser.addActivity(person, activity);
+		activity = new Activity();
+	}
+	
+	public void editActivity(Person person) {
+		System.out.println("edit");
+		System.out.println(activity.toString());
+		asUser.editActivity(person, activity);
+		activity = new Activity();
+	}
+	
+	public void deleteActivity(Person person, Activity activity){
+		System.out.println(person.toString());
+		System.out.println(activity.toString());
+		asUser.deleteActivity(person, activity.getId());
+	}
+	
 }

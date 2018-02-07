@@ -172,6 +172,9 @@ public class PersonManager{
 	@PermitAll
 	public Person login(String eMail, String password) {
 		Person person = em.find(Person.class, eMail);
+		if(person == null){
+			return null;
+		}
 		if(person.getPassword().equals(password)) {
 			return person;
 		}

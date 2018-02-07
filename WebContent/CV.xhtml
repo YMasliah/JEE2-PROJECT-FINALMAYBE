@@ -24,7 +24,7 @@
 			<h2>Liste des activitées dans le CV</h2>
 			<h:form id="myForm">
 				<h:panelGroup rendered="#{CVController.activities.size() > 0}">
-					<p:dataTable var="activity" value="#{CVController.activities}"
+					<p:dataTable id="list" var="activity" value="#{CVController.activities}"
 						tableStyle="width:auto">
 						<p:column headerText="Id">
 							<h:outputText value="#{activity.id}" />
@@ -47,9 +47,21 @@
 						<p:column headerText="WebSite">
 							<h:outputText value="#{activity.webSite}" />
 						</p:column>
+						<p:column headerText="edit">
+							<h:commandButton value="edit"
+								action="#{CVController.setActivity(activity)}">
+								<f:ajax render=":myForm:activity_new" />
+							</h:commandButton>
+						</p:column>
+						<p:column headerText="delete">
+							<h:commandButton value="delete"
+								action="#{CVController.deleteActivity(LoginController.person,activity)}">
+								<f:ajax render=":myForm:list" />
+							</h:commandButton>
+						</p:column>
 					</p:dataTable>
 				</h:panelGroup>
-				<br/>
+				<br />
 				<p:panelGrid id="activity_new" columns="2" cellpadding="5">
 					<f:facet name="header">
 						<h:outputText value="Ajouter/modifier une activitee" />
@@ -57,7 +69,7 @@
 					<p:outputLabel for="activity_year" value="Year :" />
 					<p:inputNumber id="activity_year"
 						value="#{CVController.activity.year}" maxValue="2020"
-						thousandSeparator="" decimalPlaces="0">
+						thousandSeparator="" decimalPlaces="0" required="true">
 						<f:validateLength minimum="4" maximum="4" />
 					</p:inputNumber>
 
@@ -83,8 +95,13 @@
 
 					<f:facet name="footer">
 						<h:commandButton value="Add"
-							action="#{CVController.addActivity()}">
+							action="#{CVController.addActivity(LoginController.person)}">
 							<f:ajax execute="@this activity_new" render="@form" />
+						</h:commandButton>
+						<h:commandButton value="edit"
+							action="#{CVController.editActivity(LoginController.person)}">
+							<f:ajax execute="@this activity_new" render="@form"
+								rendered="#{CVController.activity.id != null}" />
 						</h:commandButton>
 					</f:facet>
 				</p:panelGrid>

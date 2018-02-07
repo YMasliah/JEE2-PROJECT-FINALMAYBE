@@ -93,7 +93,7 @@ public class CVManager{
 	 * java.lang.Integer, database.services.ICVManager.Param, java.lang.Object)
 	 */
 	@RolesAllowed({ "User" })
-	public boolean updateActivity(Person person, Integer idAct, Param param, Object value) {
+	public boolean updateActivityParam(Person person, Integer idAct, Param param, Object value) {
 		Activity activity = em.find(Activity.class, idAct);
 		switch (param) {
 		case description:
@@ -121,13 +121,29 @@ public class CVManager{
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see database.services.ICVManager#updateActivity(database.beans.Person,
+	 * java.lang.Integer, database.services.ICVManager.Param, java.lang.Object)
+	 */
+	@RolesAllowed({ "User" })
+	public boolean editActivity(Person person, Activity activity) {
+		if(em.find(Activity.class, activity.getId()) != null){
+			em.merge(activity);
+			return true;
+		}
+		return false;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see database.services.ICVManager#deleteActivity(database.beans.Person,
 	 * java.lang.Integer)
 	 */
 	@RolesAllowed({ "User" })
 	public boolean deleteActivity(Person person, Integer idAct) {
-		person.getCv().getActivities().remove(idAct);
-		em.merge(person);
+		CV cv = em.merge(person.getCv());
+		cv.getActivities().remove(idAct);
+		em.flush();
 		return true;
 	}
 

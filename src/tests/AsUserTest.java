@@ -184,7 +184,7 @@ public class AsUserTest {
 	@Test
 	public void testUpdateActivity() {
 		Person person = manager.getPersonByParam(PersonManager.Param.eMail, "unique").get(0);
-		manager.updateActivity(person, person.getCv().getActivities().get(0).getId(), CVManager.Param.description, "sa marche ! ou pas");
+		manager.updateActivityParam(person, person.getCv().getActivities().get(0).getId(), CVManager.Param.description, "sa marche ! ou pas");
 	}
 
 	/**
@@ -192,8 +192,11 @@ public class AsUserTest {
 	 */
 	@Test
 	public void testDeleteActivity() {
+		Integer id;
 		Person person = manager.getPersonByParam(PersonManager.Param.eMail, "unique").get(0);
-		manager.deleteActivity(person, person.getCv().getActivities().get(0).getId());
+		id = person.getCv().getActivities().get(1).getId();
+		manager.deleteActivity(person, id);
+		Assert.assertNull(manager.getActivity(id));
 	}
 
 	/**

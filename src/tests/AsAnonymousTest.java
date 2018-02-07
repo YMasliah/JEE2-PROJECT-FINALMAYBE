@@ -160,7 +160,7 @@ public class AsAnonymousTest {
 	 */
 	@Test(expected = Exception.class)
 	public void testUpdateActivity() {
-		manager.updateActivity(null, null, null, null);
+		manager.updateActivityParam(null, null, null, null);
 	}
 
 	/**

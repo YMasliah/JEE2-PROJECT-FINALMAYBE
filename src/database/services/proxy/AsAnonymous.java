@@ -71,10 +71,15 @@ public class AsAnonymous{
 	 * java.lang.Integer, database.services.ICVManager.Param, java.lang.Object)
 	 */
 	@PermitAll
-	public boolean updateActivity(Person person, Integer idAct, Param param, Object value) {
-		return cvManager.updateActivity(person, idAct, param, value);
+	public boolean updateActivityParam(Person person, Integer idAct, Param param, Object value) {
+		return cvManager.updateActivityParam(person, idAct, param, value);
 	}
 
+	@PermitAll
+	public boolean editActivity(Person person, Activity activity) {
+		return cvManager.editActivity(person, activity);
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
