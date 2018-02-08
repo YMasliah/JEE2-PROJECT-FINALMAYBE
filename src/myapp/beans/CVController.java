@@ -6,7 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import database.beans.Activity;
 import database.beans.CV;
@@ -16,7 +16,7 @@ import database.services.proxy.AsAnonymous;
 import database.services.proxy.AsUser;
 
 @ManagedBean(name = "CVController")
-@SessionScoped
+@ViewScoped
 public class CVController implements Serializable{
 
 	/**

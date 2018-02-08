@@ -223,4 +223,9 @@ public class AsUser {
 	public void newPerson(String eMail, String name, String surname, String password) {
 		personManager.newPerson(eMail, name, surname, password);
 	}
+	
+	@PermitAll
+	public void editPerson(Person person){
+		personManager.editPerson(person);
+	}
 }

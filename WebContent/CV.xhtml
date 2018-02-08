@@ -19,13 +19,14 @@
 				<h:outputText value="Informations sur le CV" />
 			</h1>
 
-
-
-			<h2>Liste des activitées dans le CV n <h:outputText value="#{CVController.idSelected}"/> </h2>
+			<h2>
+				Liste des activitées dans le CV n
+				<h:outputText value="#{CVController.idSelected}" />
+			</h2>
 			<h:form id="myForm">
 				<h:panelGroup rendered="#{CVController.activities.size() > 0}">
-					<p:dataTable id="list" var="activity" value="#{CVController.activities}"
-						tableStyle="width:auto">
+					<p:dataTable id="list" var="activity"
+						value="#{CVController.activities}" tableStyle="width:auto">
 						<p:column headerText="Id">
 							<h:outputText value="#{activity.id}" />
 						</p:column>
@@ -47,13 +48,15 @@
 						<p:column headerText="WebSite">
 							<h:outputText value="#{activity.webSite}" />
 						</p:column>
-						<p:column headerText="edit" rendered="#{LoginController.person.cv.id == CVController.idSelected}">
+						<p:column headerText="edit"
+							rendered="#{LoginController.person.cv.id == CVController.idSelected}">
 							<h:commandButton value="edit"
 								action="#{CVController.setActivity(activity)}">
 								<f:ajax render=":myFormBis:activity_new" />
 							</h:commandButton>
 						</p:column>
-						<p:column headerText="delete" rendered="#{LoginController.person.cv.id == CVController.idSelected}">
+						<p:column headerText="delete"
+							rendered="#{LoginController.person.cv.id == CVController.idSelected}">
 							<h:commandButton value="delete"
 								action="#{CVController.deleteActivity(LoginController.person,activity)}">
 								<f:ajax render=":myForm:list" />
@@ -62,9 +65,10 @@
 					</p:dataTable>
 				</h:panelGroup>
 				<br />
-				</h:form>
-				<h:form id="myFormBis">
-				<p:panelGrid id="activity_new" columns="2" cellpadding="5" rendered="#{LoginController.person.cv.id == CVController.idSelected}">
+			</h:form>
+			<h:form id="myFormBis">
+				<p:panelGrid id="activity_new" columns="2" cellpadding="5"
+					rendered="#{LoginController.person.cv.id == CVController.idSelected}">
 					<f:facet name="header">
 						<h:outputText value="Ajouter/modifier une activitee" />
 					</f:facet>
@@ -97,13 +101,18 @@
 
 					<f:facet name="footer">
 						<h:commandButton value="Add"
-							action="#{CVController.addActivity(LoginController.person)}">
+							action="#{CVController.addActivity(LoginController.person)}"
+							rendered="#{CVController.activities.size() == 0}" ajax="false">
+						</h:commandButton>
+						<h:commandButton value="Add"
+							action="#{CVController.addActivity(LoginController.person)}"
+							rendered="#{CVController.activities.size() > 0}">
 							<f:ajax execute="@this activity_new" render="@form :myForm:list" />
 						</h:commandButton>
 						<h:commandButton value="edit"
-							action="#{CVController.editActivity(LoginController.person)}">
-							<f:ajax execute="@this activity_new" render="@form :myForm:list"
-								rendered="#{CVController.activity.id != null}" />
+							action="#{CVController.editActivity(LoginController.person)}"
+							rendered="#{CVController.activity.id != null}">
+							<f:ajax execute="@this activity_new" render="@form :myForm:list" />
 						</h:commandButton>
 					</f:facet>
 				</p:panelGrid>

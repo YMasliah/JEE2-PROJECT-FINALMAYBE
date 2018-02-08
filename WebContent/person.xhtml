@@ -9,15 +9,103 @@
 
 <h:body>
 	<ui:composition template="/template/mylayout.xhtml">
+		<f:metadata>
+	        <f:event type="preRenderView" listener="#{PersonController.init(LoginController.person)}"/>
+	    </f:metadata>
+		<ui:define name="title">Informations perssonelles</ui:define>
 		<ui:define name="content">
 			<h1>
-				<h:outputText value="Informations perssonelles" />
+				<h:outputText value="Informations sur le CV" />
 			</h1>
-			<p:outputLabel for="birthDate" value="Date de naissance :" />
-			<p:calendar id="birthDate" value="14-02-2018"
-				pattern="dd-MM-yyyy" mask="true" />
+
+			<h2>
+				Bonjour,
+				<h:outputText value="#{LoginController.person.eMail}"
+					rendered="#{LoginController.person != null}" />
+				<h:outputText value="Vous pouvez créer un compte ici"
+					rendered="#{LoginController.person == null}" />
+			</h2>
+
+			<p:panelGrid id="person_data" columns="2"
+				rendered="#{LoginController.person != null}">
+				<f:facet name="header">
+					<h:outputText value="informations personnelles" />
+				</f:facet>
+
+				<h:outputText value="EMail:" />
+				<h:outputText value="#{LoginController.person.eMail}" />
+
+				<h:outputText value="Name:" />
+				<h:outputText value="#{LoginController.person.name}" />
+
+				<h:outputText value="Surname:" />
+				<h:outputText value="#{LoginController.person.surname}" />
+
+				<h:outputText value="BirthDate:" />
+				<h:outputText value="#{LoginController.person.birthDate}" />
+
+				<h:outputText value="WebAdress:" />
+				<h:outputText value="#{LoginController.person.webAdress}" />
+
+				<h:outputText value="Lien:" />
+				<p:link outcome="CV" value="Lien sur le CV">
+					<f:param name="id" value="#{LoginController.person.cv.id}" />
+				</p:link>
+			</p:panelGrid>
+
+			<h:form id="myForm">
+				<p:panelGrid id="person_edit" columns="2" cellpadding="5">
+					<f:facet name="header">
+						<h:outputText value="Ajouter/modifier une personne" />
+					</f:facet>
+
+					<p:outputLabel for="eMail" value="EMail :"
+						rendered="#{LoginController.person == null}" />
+					<p:inputText id="eMail" value="#{PersonController.person.eMail}"
+						rendered="#{LoginController.person == null}">
+					</p:inputText>
+
+					<p:outputLabel for="password" value="Password :"
+						rendered="#{LoginController.person == null}" />
+					<p:inputText id="password"
+						value="#{PersonController.person.password}"
+						rendered="#{LoginController.person == null}">
+					</p:inputText>
+
+					<p:outputLabel for="name" value="Name :" />
+					<p:inputText id="name" value="#{PersonController.person.name}">
+					</p:inputText>
+
+					<p:outputLabel for="surname" value="Surname :" />
+					<p:inputText id="surname" value="#{PersonController.person.surname}">
+					</p:inputText>
+
+					<p:outputLabel for="birthDate" value="BirthDate :" />
+					<p:inputText id="birthDate"
+						value="#{PersonController.person.birthDate}">
+					</p:inputText>
+
+					<p:outputLabel for="webAdress" value="WebAdress :" />
+					<p:inputText id="webAdress"
+						value="#{PersonController.person.webAdress}">
+					</p:inputText>
+
+					<f:facet name="footer">
+						<h:commandButton value="Add"
+							action="#{PersonController.addPerson()}"
+							rendered="#{LoginController.person == null}">
+							<f:ajax execute="@this person_edit" render="@form :person_data" />
+						</h:commandButton>
+						<h:commandButton value="edit"
+							action="#{PersonController.editPerson()}"
+							rendered="#{LoginController.person != null}">
+							<f:ajax execute="@this person_edit" render="@form :person_data" />
+						</h:commandButton>
+					</f:facet>
+				</p:panelGrid>
+			</h:form>
 		</ui:define>
-		<ui:define name="title">Informations perssonelles</ui:define>
+
 	</ui:composition>
 </h:body>
 </html>

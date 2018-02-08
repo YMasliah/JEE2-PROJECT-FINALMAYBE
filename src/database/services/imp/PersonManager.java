@@ -57,6 +57,15 @@ public class PersonManager{
 	}
 
 	/* (non-Javadoc)
+	 * @see database.services.IPersonManager#editParam(database.beans.Person, database.services.IPersonManager.Param, java.lang.Object)
+	 */
+	@RolesAllowed({ "User" })
+	public void editPerson(Person person) {
+		em.merge(person);
+		em.flush();
+	}
+	
+	/* (non-Javadoc)
 	 * @see database.services.IPersonManager#getParam(database.beans.Person, database.services.IPersonManager.Param)
 	 */
 	@RolesAllowed({ "User" })
