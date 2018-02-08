@@ -141,8 +141,11 @@ public class CVManager{
 	 */
 	@RolesAllowed({ "User" })
 	public boolean deleteActivity(Person person, Integer idAct) {
-		CV cv = em.merge(person.getCv());
-		cv.getActivities().remove(idAct);
+		CV cv = em.find(CV.class, person.getCv().getId());
+		Activity activity = em.find(Activity.class, idAct);
+		int tempId = cv.getActivities().indexOf(activity);
+		cv.getActivities().remove(tempId);
+		em.remove(activity);
 		em.flush();
 		return true;
 	}

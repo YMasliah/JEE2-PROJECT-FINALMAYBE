@@ -17,8 +17,10 @@
 				
 			<h:body rendered="#{LoginController.person != null}"><li><p:link outcome="person"
 					value="Modifier ses informations perssonelles">
+					<f:param name="id" value="#{LoginController.person.eMail}" />
 				</p:link></li>
 			<li><p:link outcome="CV" value="Modifier son CV">
+				<f:param name="id" value="#{LoginController.person.cv.id}" />
 				</p:link></li>
 			</h:body>
 		</h:form>

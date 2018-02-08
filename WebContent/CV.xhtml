@@ -21,7 +21,7 @@
 
 
 
-			<h2>Liste des activitées dans le CV</h2>
+			<h2>Liste des activitées dans le CV n <h:outputText value="#{CVController.idSelected}"/> </h2>
 			<h:form id="myForm">
 				<h:panelGroup rendered="#{CVController.activities.size() > 0}">
 					<p:dataTable id="list" var="activity" value="#{CVController.activities}"
@@ -47,13 +47,13 @@
 						<p:column headerText="WebSite">
 							<h:outputText value="#{activity.webSite}" />
 						</p:column>
-						<p:column headerText="edit">
+						<p:column headerText="edit" rendered="#{LoginController.person.cv.id == CVController.idSelected}">
 							<h:commandButton value="edit"
 								action="#{CVController.setActivity(activity)}">
-								<f:ajax render=":myForm:activity_new" />
+								<f:ajax render=":myFormBis:activity_new" />
 							</h:commandButton>
 						</p:column>
-						<p:column headerText="delete">
+						<p:column headerText="delete" rendered="#{LoginController.person.cv.id == CVController.idSelected}">
 							<h:commandButton value="delete"
 								action="#{CVController.deleteActivity(LoginController.person,activity)}">
 								<f:ajax render=":myForm:list" />
@@ -62,7 +62,9 @@
 					</p:dataTable>
 				</h:panelGroup>
 				<br />
-				<p:panelGrid id="activity_new" columns="2" cellpadding="5">
+				</h:form>
+				<h:form id="myFormBis">
+				<p:panelGrid id="activity_new" columns="2" cellpadding="5" rendered="#{LoginController.person.cv.id == CVController.idSelected}">
 					<f:facet name="header">
 						<h:outputText value="Ajouter/modifier une activitee" />
 					</f:facet>
@@ -96,11 +98,11 @@
 					<f:facet name="footer">
 						<h:commandButton value="Add"
 							action="#{CVController.addActivity(LoginController.person)}">
-							<f:ajax execute="@this activity_new" render="@form" />
+							<f:ajax execute="@this activity_new" render="@form :myForm:list" />
 						</h:commandButton>
 						<h:commandButton value="edit"
 							action="#{CVController.editActivity(LoginController.person)}">
-							<f:ajax execute="@this activity_new" render="@form"
+							<f:ajax execute="@this activity_new" render="@form :myForm:list"
 								rendered="#{CVController.activity.id != null}" />
 						</h:commandButton>
 					</f:facet>
