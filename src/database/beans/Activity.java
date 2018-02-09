@@ -7,12 +7,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author masliah yann
@@ -30,12 +33,17 @@ public class Activity implements Serializable {
 	@Column(name = "id")
 	@GeneratedValue
 	private Integer id;
+	@NotNull
 	@Column(name = "year", nullable = false)
 	private Integer year;
+	@NotNull
 	@Column(name = "kind", nullable = false)
-	private String kind;
+	@Enumerated(EnumType.STRING)
+	private Kind kind;
+	@NotNull
 	@Column(name = "title", nullable = false)
 	private String title;
+	@NotNull
 	@Column(name = "description", nullable = false)
 	private String description;
 	@Column(name = "webSite")
@@ -59,14 +67,6 @@ public class Activity implements Serializable {
 
 	public void setYear(Integer year) {
 		this.year = year;
-	}
-
-	public String getKind() {
-		return kind;
-	}
-
-	public void setKind(String kind) {
-		this.kind = kind;
 	}
 
 	public String getTitle() {
@@ -133,6 +133,14 @@ public class Activity implements Serializable {
 	public String toString() {
 		return "Activity [id=" + id + ", year=" + year + ", kind=" + kind + ", title=" + title + ", description="
 				+ description + ", webSite=" + webSite + ", cv=" + cv + "]";
+	}
+
+	public Kind getKind() {
+		return kind;
+	}
+
+	public void setKind(Kind kind) {
+		this.kind = kind;
 	}
 
 }

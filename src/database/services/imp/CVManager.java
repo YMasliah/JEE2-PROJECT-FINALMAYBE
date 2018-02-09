@@ -14,6 +14,7 @@ import javax.persistence.PersistenceContext;
 
 import database.beans.Activity;
 import database.beans.CV;
+import database.beans.Kind;
 import database.beans.Person;
 
 /**
@@ -54,7 +55,7 @@ public class CVManager{
 	 * java.lang.String)
 	 */
 	@RolesAllowed({ "User" })
-	public void addActivity(Person person, Integer year, String kind, String title, String description,
+	public void addActivity(Person person, Integer year, Kind kind, String title, String description,
 			String webSite) {
 		Activity temp = new Activity();
 		temp.setYear(year);
@@ -65,8 +66,6 @@ public class CVManager{
 		CV cv = em.find(CV.class, person.getCv().getId());
 		cv.addActivity(temp);
 		temp.setCv(cv);
-//		em.merge(cv);
-//		em.persist(temp);
 		em.merge(cv.getPerson());
 		em.flush();
 	}
@@ -100,7 +99,7 @@ public class CVManager{
 			activity.setDescription((String) value);
 			break;
 		case kind:
-			activity.setKind((String) value);
+			activity.setKind((Kind) value);
 			break;
 		case title:
 			activity.setTitle((String) value);

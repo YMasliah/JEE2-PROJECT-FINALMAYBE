@@ -21,14 +21,12 @@ public class PersonController {
 	Person person;
 	
     public void init(Person person) {
-    	System.out.println("hi");
 		if(person == null){
 			this.person = new Person();
 		}
 		else{
 			this.person = person;
 		}
-		System.out.println("bye");
     }
 	
 	public void addPerson(){

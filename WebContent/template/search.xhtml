@@ -15,15 +15,14 @@
 			<f:facet name="header">
 				<h:outputText value="Recherche" />
 			</f:facet>
-			<p:outputLabel value="Type" />
-			<p:inputText />
-			<p:outputLabel value="Valeur" />
-			<p:inputText />
+			<p:outputLabel for="person_search" value="eMail utilisateur" />
+			<p:inputText id="person_search" value="#{SearchController.eMail}"
+				required="true" label="person_search" />
 
 			<f:facet name="footer">
 				<p:row>
 					<p:column>
-						<p:commandButton id="submit" value="Rechercher" />
+						<h:commandLink action="#{SearchController.search}" value="Rechercher" />
 					</p:column>
 				</p:row>
 			</f:facet>

@@ -10,8 +10,9 @@
 <h:body>
 	<ui:composition template="/template/mylayout.xhtml">
 		<f:metadata>
-	        <f:event type="preRenderView" listener="#{PersonController.init(LoginController.person)}"/>
-	    </f:metadata>
+			<f:event type="preRenderView"
+				listener="#{PersonController.init(LoginController.person)}" />
+		</f:metadata>
 		<ui:define name="title">Informations perssonelles</ui:define>
 		<ui:define name="content">
 			<h1>
@@ -42,7 +43,9 @@
 				<h:outputText value="#{LoginController.person.surname}" />
 
 				<h:outputText value="BirthDate:" />
-				<h:outputText value="#{LoginController.person.birthDate}" />
+				<h:outputText value="#{LoginController.person.birthDate}">
+					<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+				</h:outputText>
 
 				<h:outputText value="WebAdress:" />
 				<h:outputText value="#{LoginController.person.webAdress}" />
@@ -62,33 +65,45 @@
 					<p:outputLabel for="eMail" value="EMail :"
 						rendered="#{LoginController.person == null}" />
 					<p:inputText id="eMail" value="#{PersonController.person.eMail}"
-						rendered="#{LoginController.person == null}">
+						rendered="#{LoginController.person == null}" required="true">
+						<f:validator for="activity_webSite"
+							validatorId="myconstraints.email" />
 					</p:inputText>
+
 
 					<p:outputLabel for="password" value="Password :"
 						rendered="#{LoginController.person == null}" />
 					<p:inputText id="password"
 						value="#{PersonController.person.password}"
-						rendered="#{LoginController.person == null}">
+						rendered="#{LoginController.person == null}" required="true">
+						<f:validateLength minimum="5" />
 					</p:inputText>
+
 
 					<p:outputLabel for="name" value="Name :" />
-					<p:inputText id="name" value="#{PersonController.person.name}">
+					<p:inputText id="name" value="#{PersonController.person.name}"
+						required="true">
 					</p:inputText>
+
 
 					<p:outputLabel for="surname" value="Surname :" />
-					<p:inputText id="surname" value="#{PersonController.person.surname}">
+					<p:inputText id="surname"
+						value="#{PersonController.person.surname}" required="true">
 					</p:inputText>
 
+
 					<p:outputLabel for="birthDate" value="BirthDate :" />
-					<p:inputText id="birthDate"
-						value="#{PersonController.person.birthDate}">
-					</p:inputText>
+					<p:calendar id="birthDate"
+						value="#{PersonController.person.birthDate}" pattern="dd-MM-yyyy"
+						mask="true" navigator="true" yearRange="c-100:c" />
+
 
 					<p:outputLabel for="webAdress" value="WebAdress :" />
 					<p:inputText id="webAdress"
 						value="#{PersonController.person.webAdress}">
+						<f:validator for="webAdress" validatorId="myconstraints.url" />
 					</p:inputText>
+
 
 					<f:facet name="footer">
 						<h:commandButton value="Add"
@@ -103,6 +118,12 @@
 						</h:commandButton>
 					</f:facet>
 				</p:panelGrid>
+				<p:message for="eMail" />
+				<p:message for="password" />
+				<p:message for="name" />
+				<p:message for="surname" />
+				<p:message for="birthDate" />
+				<p:message for="webAdress" />
 			</h:form>
 		</ui:define>
 

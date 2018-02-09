@@ -20,6 +20,7 @@ import org.junit.Test;
 
 import database.beans.Activity;
 import database.beans.CV;
+import database.beans.Kind;
 import database.beans.Person;
 import database.services.imp.CVManager;
 import database.services.imp.PersonManager;
@@ -158,7 +159,7 @@ public class AsUserTest {
 	@Test
 	public void testAddActivityPersonIntegerStringStringStringString() {
 		Person person = manager.getPersonByParam(PersonManager.Param.eMail, "unique").get(0);
-		manager.addActivity(person, 2522, "pasunique", "pasunique", "pasunique", "pasunique");
+		manager.addActivity(person, 2522, Kind.formation, "pasunique", "pasunique", "pasunique");
 	}
 
 	/**
@@ -170,7 +171,7 @@ public class AsUserTest {
 		int actual = manager.getCV(person).getActivities().size();
 		Activity activity = new Activity();
 		activity.setDescription("pasunique");
-		activity.setKind("pasunique");
+		activity.setKind(Kind.formation);
 		activity.setTitle("pasunique");
 		activity.setWebSite("pasunique");
 		activity.setYear(16);

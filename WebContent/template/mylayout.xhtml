@@ -15,16 +15,21 @@
 
 	<div id="page">
 		<div id="header">
-			<ui:insert name="header">
-				<span>Gestionnaire de CV</span>
-				<ui:insert name="search">
-					<ui:include src="/template/search.xhtml" />
+			<table>
+				<ui:insert name="header">
+					<tr>
+						<span>Gestionnaire de CV</span>
+					</tr>
+					<tr>
+						<td><ui:insert name="search">
+								<ui:include src="/template/search.xhtml" />
+							</ui:insert></td>
+						<td><ui:insert name="login">
+								<ui:include src="/template/login.xhtml" />
+							</ui:insert></td>
+					</tr>
 				</ui:insert>
-				<ui:insert name="login">
-					<ui:include src="/template/login.xhtml" />
-				</ui:insert>
-			</ui:insert>
-
+			</table>
 		</div>
 		<div id="menu">
 			<ui:insert name="menu">

@@ -39,6 +39,8 @@
 							<h:outputText value="#{activity.kind}" />
 						</p:column>
 
+
+
 						<p:column headerText="Title">
 							<h:outputText value="#{activity.title}" />
 						</p:column>
@@ -56,7 +58,14 @@
 							</h:commandButton>
 						</p:column>
 						<p:column headerText="delete"
-							rendered="#{LoginController.person.cv.id == CVController.idSelected}">
+							rendered="#{LoginController.person.cv.id==CVController.idSelected and (CVController.activities.size()==1)}">
+							<h:commandButton value="delete"
+								action="#{CVController.deleteActivity(LoginController.person,activity)}"
+								ajax="false">
+							</h:commandButton>
+						</p:column>
+						<p:column headerText="delete"
+							rendered="#{LoginController.person.cv.id==CVController.idSelected  and (CVController.activities.size()>1)}">
 							<h:commandButton value="delete"
 								action="#{CVController.deleteActivity(LoginController.person,activity)}">
 								<f:ajax render=":myForm:list" />
@@ -80,23 +89,26 @@
 					</p:inputNumber>
 
 					<p:outputLabel for="activity_kind" value="Kind :" />
-					<p:inputText id="activity_kind"
-						value="#{CVController.activity.kind}">
-					</p:inputText>
+					<p:selectOneMenu id="activity_kind" value="#{CVController.activity.kind}" required="true">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItems value="#{data.kinds}" />
+					</p:selectOneMenu>
 
 					<p:outputLabel for="activity_title" value="Title :" />
 					<p:inputText id="activity_title"
-						value="#{CVController.activity.title}">
+						value="#{CVController.activity.title}" required="true">
 					</p:inputText>
 
 					<p:outputLabel for="activity_description" value="Description :" />
 					<p:inputText id="activity_description"
-						value="#{CVController.activity.description}">
+						value="#{CVController.activity.description}" required="true">
 					</p:inputText>
 
 					<p:outputLabel for="activity_webSite" value="webSite :" />
 					<p:inputText id="activity_webSite"
 						value="#{CVController.activity.webSite}">
+						<f:validator for="activity_webSite"
+							validatorId="myconstraints.url" />
 					</p:inputText>
 
 					<f:facet name="footer">
@@ -116,6 +128,11 @@
 						</h:commandButton>
 					</f:facet>
 				</p:panelGrid>
+				<p:message for="activity_year" />
+				<p:message for="activity_kind" />
+				<p:message for="activity_title" />
+				<p:message for="activity_description" />
+				<p:message for="activity_webSite" />
 			</h:form>
 		</ui:define>
 

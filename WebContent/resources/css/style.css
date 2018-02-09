@@ -3,12 +3,14 @@ h1 {
 }
 
 table {
-	border-collapse: collapse;
-	border: 1px solid black;
+	
+	border: none;
+	width: 100%;
 }
 
 td, th {
-	border: 1px solid black;
+	border: none;
+	width:50%;
 	padding: 3px;
 }
 
@@ -27,44 +29,14 @@ td, th {
 	text-align: center;
 }
 
-#login, #search {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-#search {
-	padding: 1% 0 0 1%;
-}
-
-#login {
-	position: relative;
-	top: -150px;
-	display: inline-block;
-	float: right;
-	margin: 0 1% 1% 0;
-}
-
-#logout {
-	position: relative;
-	top: -150px;
-	display: inline-block;
-	float: right;
-	margin: 0 1% 1% 0;
-}
-
 #menu {
-	clear:right;
-	float: right;
-	width: 150px;
-	border: solid 1px gray;
-	padding: 5px;
-	color: blue;
-	background-color: white;
-	margin-left: 20px;
-	position: relative;
-	top: -100px;
-	right: 10px;
+    float: right;
+    width: 150px;
+    border: solid 1px gray;
+    padding: 5px;
+    color: blue;
+    background-color: white;
+    margin-left: 20px;
 }
 
 #content {

@@ -54,7 +54,6 @@ public class LoginController implements Serializable{
 	public void logout() {
 		username = "";
 		password = "";
-		System.out.println(person);
 		person = null;
 		
 		FacesContext context = FacesContext.getCurrentInstance();

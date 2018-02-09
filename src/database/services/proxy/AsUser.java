@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 
 import database.beans.Activity;
 import database.beans.CV;
+import database.beans.Kind;
 import database.beans.Person;
 import database.services.imp.CVManager;
 import database.services.imp.CVManager.Param;
@@ -50,7 +51,7 @@ public class AsUser {
 	 * java.lang.String)
 	 */
 	@PermitAll
-	public void addActivity(Person person, Integer year, String kind, String title, String description,
+	public void addActivity(Person person, Integer year, Kind kind, String title, String description,
 			String webSite) {
 		cvManager.addActivity(person, year, kind, title, description, webSite);
 	}

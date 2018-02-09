@@ -30,9 +30,6 @@ public class CVController implements Serializable{
 	@EJB
 	AsUser asUser;
 	
-//	@ManagedProperty("#{LoginController}")
-//    private LoginController loginController;
-	
 	@SuppressWarnings("unused")
 	private List<Activity> activities;
 	
@@ -89,23 +86,16 @@ public class CVController implements Serializable{
 
 	public void addActivity(Person person) {
 		activity.setId(null);
-		System.out.println("nouveau");
-		System.out.println(activity.toString());
-		System.out.println(person.toString());
 		asUser.addActivity(person, activity);
 		activity = new Activity();
 	}
 	
 	public void editActivity(Person person) {
-		System.out.println("edit");
-		System.out.println(activity.toString());
 		asUser.editActivity(person, activity);
 		activity = new Activity();
 	}
 	
 	public void deleteActivity(Person person, Activity activity){
-		System.out.println(person.toString());
-		System.out.println(activity.toString());
 		asUser.deleteActivity(person, activity.getId());
 	}
 	

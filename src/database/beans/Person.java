@@ -4,9 +4,8 @@
 package database.beans;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
-import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author masliah yann
@@ -33,14 +33,17 @@ public class Person implements Serializable{
 	@Id
 	@Column(name = "eMail", unique = true)
 	private String eMail;
+	@NotNull
 	@Column(name = "name", nullable = false)
 	private String name;
+	@NotNull
 	@Column(name = "surname", nullable = false)
 	private String surname;
 	@Column(name = "webAdress")
 	private String webAdress;
 	@Column(name = "birthDate")
 	private Date birthDate;
+	@NotNull
 	@Column(name = "password", nullable = false)
 	private String password;
 	@OneToOne(fetch = FetchType.EAGER)
