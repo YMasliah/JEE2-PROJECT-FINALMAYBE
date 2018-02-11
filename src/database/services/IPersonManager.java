@@ -10,8 +10,6 @@ import database.beans.Person;
 /**
  * @author masliah yann
  *
- *         les fonctions de recherche auront surement une pagination dans la
- *         version finale.
  */
 public interface IPersonManager {
 	public enum Param {

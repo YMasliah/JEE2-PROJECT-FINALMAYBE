@@ -14,7 +14,6 @@ import database.beans.Person;
  *
  * la totalitee des fonctionnalitees sont utilisable grace a un utilisateur authentifier
  * 
- * les fonctions de recherche auront surement une pagination dans la version finale.
  */
 public interface ICVManager {
 	public enum Param {
