@@ -27,45 +27,19 @@
 					rendered="#{LoginController.person == null}" />
 			</h2>
 
-			<p:panelGrid id="person_data" columns="2"
-				rendered="#{LoginController.person != null}">
-				<f:facet name="header">
-					<h:outputText value="informations personnelles" />
-				</f:facet>
-
-				<h:outputText value="EMail:" />
-				<h:outputText value="#{LoginController.person.eMail}" />
-
-				<h:outputText value="Name:" />
-				<h:outputText value="#{LoginController.person.name}" />
-
-				<h:outputText value="Surname:" />
-				<h:outputText value="#{LoginController.person.surname}" />
-
-				<h:outputText value="BirthDate:" />
-				<h:outputText value="#{LoginController.person.birthDate}">
-					<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
-				</h:outputText>
-
-				<h:outputText value="WebAdress:" />
-				<h:outputText value="#{LoginController.person.webAdress}" />
-
-				<h:outputText value="Lien:" />
-				<p:link outcome="CV" value="Lien sur le CV">
-					<f:param name="id" value="#{LoginController.person.cv.id}" />
-				</p:link>
-			</p:panelGrid>
 
 			<h:form id="myForm">
 				<p:panelGrid id="person_edit" columns="2" cellpadding="5">
 					<f:facet name="header">
-						<h:outputText value="Ajouter/modifier une personne" />
+						<h:outputText value="creer un nouveau compte"
+							rendered="#{LoginController.person == null}" />
+						<h:outputText value="modifier ses informations"
+							rendered="#{LoginController.person != null}" />
 					</f:facet>
 
-					<p:outputLabel for="eMail" value="EMail :"
-						rendered="#{LoginController.person == null}" />
+					<p:outputLabel for="eMail" value="EMail :" />
 					<p:inputText id="eMail" value="#{PersonController.person.eMail}"
-						rendered="#{LoginController.person == null}" required="true">
+						disabled="#{LoginController.person != null}" required="true">
 						<f:validator for="activity_webSite"
 							validatorId="myconstraints.email" />
 					</p:inputText>
@@ -104,17 +78,32 @@
 						<f:validator for="webAdress" validatorId="myconstraints.url" />
 					</p:inputText>
 
+					<h:outputText value="Lien:"
+						rendered="#{LoginController.person != null}" />
+					<p:link outcome="CV" value="Lien sur le CV"
+						rendered="#{LoginController.person != null}">
+						<f:param name="id" value="#{LoginController.person.cv.id}" />
+					</p:link>
 
 					<f:facet name="footer">
+						<p:growl id="growl2" life="2000" redisplay="false" />
 						<h:commandButton value="Add"
 							action="#{PersonController.addPerson()}"
-							rendered="#{LoginController.person == null}">
-							<f:ajax execute="@this person_edit" render="@form :person_data" />
+							rendered="#{LoginController.person == null}" update="growl2"
+							actionListener="#{PersonController.listener}">
+							<f:ajax execute="@this person_edit" render="@form" />
 						</h:commandButton>
 						<h:commandButton value="edit"
 							action="#{PersonController.editPerson()}"
-							rendered="#{LoginController.person != null}">
-							<f:ajax execute="@this person_edit" render="@form :person_data" />
+							rendered="#{LoginController.person != null}" update="growl2"
+							actionListener="#{PersonController.listener}">
+							<f:ajax execute="@this person_edit" render="@form" />
+						</h:commandButton>
+						<h:commandButton value="delete account"
+							action="#{LoginController.logout}"
+							rendered="#{LoginController.person != null}" update="growl2"
+							actionListener="#{PersonController.deletePerson(LoginController.person)}"
+							ajax="false">
 						</h:commandButton>
 					</f:facet>
 				</p:panelGrid>

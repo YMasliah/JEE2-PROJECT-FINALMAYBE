@@ -1,8 +1,10 @@
 package myapp.beans;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import database.beans.Person;
 import database.services.proxy.AsAnonymous;
@@ -43,6 +45,15 @@ public class PersonController {
 
 	public void setPerson(Person person) {
 		this.person = person;
+	}
+	
+	public void deletePerson(Person person){
+		asUser.deletePerson(person);
+	}
+	
+	public void listener(){
+		FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Ajout/Modification reussi") );
 	}
 	
 }

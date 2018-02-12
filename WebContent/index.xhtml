@@ -17,18 +17,12 @@
 			<h:form id="form">
 				<p:dataList value="#{CVController.cvs}" var="cv" type="unordered"
 					itemType="none" paginator="true" rows="10" styleClass="paginated">
-					<f:facet name="header"> CV List </f:facet>
+					<f:facet name="header"> CV List  </f:facet>
 					<p:link outcome="CV" value="#{cv.id}">
 						<f:param name="id" value="#{cv.id}" />
 					</p:link>
 				</p:dataList>
 			</h:form>
-
-			<h:form id="refresh">
-				<p:commandButton value="refresh List" update="growl"
-					actionListener="#{CVController.refreshCVs()}" ajax="false" />
-			</h:form>
-
 		</ui:define>
 		<ui:define name="title">acceuil</ui:define>
 	</ui:composition>

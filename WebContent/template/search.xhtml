@@ -19,10 +19,14 @@
 			<p:inputText id="person_search" value="#{SearchController.eMail}"
 				required="true" label="person_search" />
 
+
+
 			<f:facet name="footer">
 				<p:row>
 					<p:column>
-						<h:commandLink action="#{SearchController.search}" value="Rechercher" />
+						<p:commandButton value="Rechercher"
+							action="#{SearchController.search}">
+						</p:commandButton>
 					</p:column>
 				</p:row>
 			</f:facet>
